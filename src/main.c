@@ -38,10 +38,6 @@ void executeCommand(char *command) {
         char *dir = strtok(command + 8, " ");
         char *filename = strtok(NULL, " ");
         searchFile(dir, filename);
-    } 
-    else if (strncmp(command, "sopen", 5) == 0) {
-
-        openDirectory(command + 6);
     }
     else if (strncmp(command, "sstat", 5) == 0) {
 
