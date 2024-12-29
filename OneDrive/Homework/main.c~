@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <string.h>
+#include "file_operations.h"
+#include "directory_ops.h"
+#include "perm.h"
+#include "logger.h"
+
+void executeCommand(char *command) {
+    if (strncmp(command, "slist", 5) == 0) {
+        listDirectory(command + 6);  // Dizin parametresini al
+    } else if (strncmp(command, "scopy", 5) == 0) {
+        copyFile(command + 6);  // Kopyalama komutu
+    } else if (strncmp(command, "sremove", 7) == 0) {
+        removeFile(command + 8);  // Silme komutu
+    } else {
+        printf("Unknown command!\n");
+    }
+}
+
+int main() {
+    char command[256];
+    while (1) {
+        printf("> ");
+        fgets(command, sizeof(command), stdin);
+        command[strcspn(command, "\n")] = 0;  // Yeni satırı kaldır
+        executeCommand(command);
+    }
+    return 0;
+}
+

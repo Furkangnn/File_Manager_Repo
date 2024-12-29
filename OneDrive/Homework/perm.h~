@@ -1,0 +1,11 @@
+#include <stdio.h>
+#include <sys/stat.h>
+
+void changePermissions(const char *path, mode_t mode) {
+    if (chmod(path, mode) == -1) {
+        perror("Failed to change permissions");
+    } else {
+        printf("Permissions changed successfully\n");
+    }
+}
+
